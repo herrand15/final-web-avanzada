@@ -1,12 +1,12 @@
 import React from "react";
 import logo from "./logo.svg";
 import "./App.css";
-import Weather from "./components/weather"
+import Event from "./components/event"
 
 function App() {
   return (
     <div className="App">
-      <Weather />
+      <Event />
     </div>
   );
 }
