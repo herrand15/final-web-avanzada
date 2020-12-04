@@ -8,11 +8,11 @@ function Event() {
 
     async function eventData(e){
         e.preventDefault();
-        if(form.city == ""){
-            alert("Favor completar campo(s) de búsqueda");
+        if(form.eventName == ""){
+            alert("Favor completar campo de búsqueda");
         }
         else{
-            const data = await fetch(`https://jsonplaceholder.typicode.com/photos`)
+            const data = await fetch(`https://jsonplaceholder.typicode.com/photos/${form.eventName}`)
             .then((res) => res.json())
             .then((data) => data);
 
@@ -25,8 +25,7 @@ function Event() {
     }
 
     const [form, setForm] = useState({
-        city:"",
-        eventName:""
+        eventName:null
     })
 
     const [event, setEvent] = useState([]);
@@ -35,13 +34,11 @@ function Event() {
         let name = e.target.name;
         let value = e.target.value;
 
-        if(name == "city"){
-            setForm({...form, city:value})
-        }
+    
         if(name == "eventName"){
             setForm({...form, eventName:value})
         }
-        console.log(form.city, form.eventName);
+        console.log(form.eventName);
     };
 
 
@@ -51,9 +48,7 @@ function Event() {
             <br />
 
             <form>
-                <input type="text" name="city" placeholder="city" onChange={(e) => handleChange(e)} />
-                &nbsp;&nbsp;&nbsp;&nbsp;
-                <input type="text" name="event name" placeholder="event name" onChange={(e) => handleChange(e)} /> 
+                <input type="number" name="eventName" placeholder="id" onChange={(e) => handleChange(e)} /> 
                 <button className = "getevent" onClick={(e) => eventData(e)}>Search</button>
             </form>
             {
